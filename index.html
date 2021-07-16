@@ -36,11 +36,13 @@
 	</script>
 	<script>
 	var convForm;
+	let c= 1;
 	jQuery(function($){
 		convForm = $('#chat').convform({eventList:{onInputSubmit: (convState, ready) => {
 				console.log(convState.current.answer);
-
 				getResponce(convState);
+
+
 
 				//To End and reload conversation.
 				// convState.current.next = false;
@@ -50,7 +52,8 @@
 		    }}})		        
 		});
 
-		const getResponce = (convState, ques ='Sorry, I cant find anything for that', type='input', answers = [] ) => {
+		const getResponce = (convState, {ques , type, answers}={type:'input',ques:'Sorry, I cant find anything for that',answers:[]}) => {
+			
 			convState.current.next = convState.newState({
 						type,
 						questions: [ques],
